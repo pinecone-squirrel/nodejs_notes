@@ -4,7 +4,7 @@
 import process from 'node:process'
 
 import { argv, env, cwd, exit, pid } from 'node:process'
-// argv返回一个数组
+// argv返回一个数组, 其中包含启动 Node.js 进程时传入的命令行参数
 // 第一个元素是nodejs执行文件的绝对路径
 // 第二个元素是被执行的js文件的路径
 // 其余元素是传递给脚本的命令行参数
@@ -25,8 +25,31 @@ console.log(env.learnnodejs)
 
 
 // cwd 返回当前工作目录的路径
-console.log(cwd())
+console.log(cwd()) // E:\cuboWork\nodejs_notes
 
+// process.arch 返回cpu架构，跟os.arch()一样
+console.log(process.arch) // x64
+
+// process.memoryUsage() 返回描述 Node.js 进程的内存使用量（以字节为单位）的对象。
+console.log(process.memoryUsage())
+// {
+//   rss: 28274688,
+//   heapTotal: 4935680,
+//   heapUsed: 4552448,
+//   external: 1711589,
+//   arrayBuffers: 12829
+// }
+
+
+//  process.kill()
+// 尽管此函数的名字是 process.kill()
+// 但它实际上只是信号发送者，就像 kill 系统调用。发送的信号可能会做其他事情而不是杀死目标进程。
+process.kill(process.pid)
+
+
+// process.env 属性返回包含用户环境的对象, 也可以修改和查询环境变量
+// 此类修改不会反映在 Node.js 进程之外,而是只在当前线程生效，线程结束便释放
+console.log(process.env)
 
 // process.on(event, listener): 用于注册事件监听器
 // 可以使用process.on监听诸如
