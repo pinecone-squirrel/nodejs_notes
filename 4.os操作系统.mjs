@@ -33,5 +33,31 @@ const cpusList = [
 ]
 // i5-8400确实是6核6线程，2.8GHz频率
 
-// os.networkInterfaces()
+// os.networkInterfaces() 返回包含已分配网络地址的网络接口的对象
 console.log(os.networkInterfaces())
+const networkObj = {
+  address: '192.168.1.5',
+  netmask: '255.255.255.0',
+  family: 'IPv4',
+  mac: '68:ec:c5:9d:6d:a9',
+  internal: false,
+  cidr: '192.168.1.5/24'
+}
+
+// 小案例
+import { exec } from 'node:child_process'
+const openBrowser = url => {
+  if(os.platform() === 'win32') { // windows
+    exec(`open ${url}`); //执行shell脚本
+    return
+  }
+  if(os.platform() === 'darwin') { // mac
+    exec(`start ${url}`); //执行shell脚本
+    return
+  }
+  if(os.platform() === 'linux') { // linux
+    exec(`xdg-open ${url}`); //执行shell脚本
+    return
+  }
+}
+openBrowser('https://juejin.cn/post/7269014861380698169')
