@@ -48,11 +48,11 @@ const networkObj = {
 import { exec } from 'node:child_process'
 const openBrowser = url => {
   if(os.platform() === 'win32') { // windows
-    exec(`open ${url}`); //执行shell脚本
+    exec(`start ${url}`); //执行shell脚本
     return
   }
   if(os.platform() === 'darwin') { // mac
-    exec(`start ${url}`); //执行shell脚本
+    exec(`open ${url}`); //执行shell脚本
     return
   }
   if(os.platform() === 'linux') { // linux
