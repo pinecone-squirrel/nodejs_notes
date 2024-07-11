@@ -14,18 +14,20 @@
 // spawnSync 执行命令 同步执行
 
 import child_process from 'node:child_process'
+import process from 'node:process'
+import path from 'node:path'
 
 // exec执行shell命令
 // 获取node版本
 child_process.exec('node -v', (error, stdout, stderr) => {
-  if(!error) {
+  if (!error) {
     console.log(stdout) // v20.15.0
   }
 })
 
 // execSync同步执行shell命令
 // 获取node版本
-const nodeVersion  = child_process.execSync('node -v')
+const nodeVersion = child_process.execSync('node -v')
 console.log(nodeVersion) // Buffer
 console.log(nodeVersion.toString()) // v20.15.0
 
@@ -33,19 +35,18 @@ console.log(nodeVersion.toString()) // v20.15.0
 // 不同的是指定的可执行文件 file
 
 child_process.execFile('node', ['-v'], (error, stdout, stderr) => {
-  if(!error) {
+  if (!error) {
     console.log(stdout.toString()) // v20.15.0
   }
 })
 
-import process from 'node:process'
-import path from 'node:path'
+
 const dirname = process.cwd()
-const filePath = path.resolve(dirname, 'mkdir/bat.cmd')
-console.log(filePath)
-child_process.execFile('E:\cuboWork\nodejs_notes\mkdir\bat.cmd', null,(error, stdout, stderr) => {
+const filePath = path.resolve(dirname, './mkdir/bat.cmd')
+console.log(filePath) // D:\cubeWork\nodejs_notes\mkdir\bat.cmd
+child_process.execFile(filePath, [], (error, stdout, stderr) => {
   console.log(error)
-  if(!error) {
+  if (!error) {
     console.log(stdout)
   }
 })
